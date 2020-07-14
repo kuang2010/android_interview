@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 
 那么原因是什么？
 
-**这里先要学习一个方法：FragmentTransaction.addToBackStack(String)**【把当前事务的变化情况添加到回退栈。抵消replace方法里remove的部分效果和抵消add方法的视图重叠效果】
+**这里先要学习一个方法：FragmentTransaction.addToBackStack(String)**【把当前事务的变化情况添加到回退栈。抵消replace方法时remove功能的部分效果和抵消add方法时的视图重叠效果】
 
 代码如下：
 
@@ -375,7 +375,7 @@ public class FragmentOne extends Fragment implements OnClickListener {
         FragmentManager fm = getFragmentManager();  
         FragmentTransaction tx = fm.beginTransaction();  
         tx.replace(R.id.id_content, fTwo, "TWO");  
-        tx.addToBackStack(null);  
+        tx.addToBackStack(null);  //抵消replace的remove功能的部分效果
         tx.commit();  
     }  
 
@@ -409,7 +409,7 @@ public class FragmentTwo extends Fragment implements OnClickListener {
         tx.hide(this);  
         tx.add(R.id.id_content , fThree, "THREE");  
         //tx.replace(R.id.id_content, fThree, "THREE");  
-        tx.addToBackStack(null);  
+        tx.addToBackStack(null);  //抵消视图重叠
         tx.commit();  
     }  
 
